@@ -327,25 +327,13 @@ Reporting length-stratified accuracy so length gains are not mistaken for qualit
 
 ## 6. Changes Made During Phase 2
 
-Reviewing the independent implementation (Run 2) against ours surfaced two
-sampling bugs. Both were fixed in
-[Bradley-Terry-Baselines PR #1](https://github.com/Haneesh-Kankipati/Bradley-Terry-Baselines/pull/1)
-and all Run 2 numbers above are after the fix.
-
-1. **HH-RLHF transfer used harmlessness pairs only.** The HH test split is four
-   subsets concatenated in order, harmless-base first (2,312 rows). Taking the
-   "first 2,000 pairs" therefore evaluated only harmlessness data. Fix: shuffle
-   with a fixed seed before sampling (the sample now has 28% harmless-base vs
-   27% in the full split), and also report the full 8,505-pair split.
-   **Effect:** transfer moved from 48.2% / 43.5% (full / length-only) to
-   51.9% / 52.5%. The earlier conclusion that "HH prefers shorter responses, so
-   the UltraFeedback length rule falls below chance" was an artifact: across all
-   of HH the chosen response is longer more often (44%) than shorter (39%).
-2. **Frozen test set depended on `--max-train`.** One random generator subsampled
-   train, then val, then test, so changing the training-set size changed which
-   test pairs were saved for the same seed. Fix: an independent generator per
-   split. **Effect on seed 0:** full model unchanged at 59.2%; length-only 56.5%
-   → 56.8%; gap +2.7 → +2.4 pts (CI still excludes 0).
+Reviewing the independent implementation (Run 2) found two sampling bugs, fixed in
+[Bradley-Terry-Baselines PR #1](https://github.com/Haneesh-Kankipati/Bradley-Terry-Baselines/pull/1);
+all Run 2 numbers above are after the fix. The HH-RLHF transfer test had sampled
+harmlessness pairs only (48.2% / 43.5% before, 51.9% / 52.5% after, which removed
+the earlier "HH prefers shorter responses" conclusion), and the saved test set
+depended on `--max-train`. Details, verification and before/after tables are in
+`REVIEW_AND_FIXES.md`.
 
 **Open decision.** The two runs use different test sets (official 895-pair split
 vs 4,000-pair re-split). The DPO baseline scores the official split, so Run 1 is
