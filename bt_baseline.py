@@ -145,20 +145,20 @@ def run(args):
     t0 = time.time()
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
-    rng = np.random.default_rng(args.seed)
 
     print("Loading UltraFeedback ...")
     rows = load_ultrafeedback()
     train, val, test = split_rows(rows, seed=args.seed)
 
-    def subsample(xs, n):
+    def subsample(xs, n, k):
+        rng = np.random.default_rng((args.seed, k))
         if n and len(xs) > n:
             xs = [xs[i] for i in sorted(rng.choice(len(xs), n, replace=False))]
         return xs
 
-    train = subsample(train, args.max_train)
-    val = subsample(val, args.max_val)
-    test = subsample(test, args.max_test)
+    train = subsample(train, args.max_train, 0)
+    val = subsample(val, args.max_val, 1)
+    test = subsample(test, args.max_test, 2)
     print(f"  pairs: train={len(train)} val={len(val)} test={len(test)} "
           f"(prompt-disjoint, seed={args.seed})")
     # Frozen test set, reused by the DPO baseline for a like-for-like comparison.
@@ -218,7 +218,7 @@ def run(args):
         print(f"  {k:14s} {w:+.4f}")
 
     if args.hh_test:
-        print(f"\nCross-corpus transfer: HH-RLHF test (first {args.hh_test} pairs) ...")
+        print(f"\nCross-corpus transfer: HH-RLHF test ({args.hh_test} seeded-sample pairs) ...")
         hh = load_hh("test", limit=args.hh_test)
         Fc_hh, Fr_hh = fz.pair_features(hh)
         _, hh_full = evaluate(bt, Fc_hh, Fr_hh, args.seed)

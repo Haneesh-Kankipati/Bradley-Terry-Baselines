@@ -5,6 +5,7 @@ Every example is normalized to a dict: {"id", "prompt", "chosen", "rejected"}.
 
 import hashlib
 import json
+import random
 from pathlib import Path
 
 from datasets import load_dataset
@@ -61,12 +62,13 @@ def load_ultrafeedback():
     return _clean(rows)
 
 
-def load_hh(split="test", limit=None):
+def load_hh(split="test", limit=None, seed=0):
     """Anthropic/hh-rlhf, used only for cross-corpus transfer evaluation.
 
     Each side is a full transcript "\\n\\nHuman: ... \\n\\nAssistant: ...".
     The prompt is everything up to the final assistant turn, and the response
-    is that final turn.
+    is that final turn. The split is several subsets concatenated in order
+    (harmless-base first), so rows are shuffled with a fixed seed before `limit`.
     """
     ds = load_dataset("Anthropic/hh-rlhf", split=split)
     tag = "\n\nAssistant:"
@@ -83,6 +85,7 @@ def load_hh(split="test", limit=None):
             "rejected": r[ri + len(tag):].strip(),
         })
     rows = _clean(rows)
+    random.Random(seed).shuffle(rows)
     return rows[:limit] if limit else rows
 
 
