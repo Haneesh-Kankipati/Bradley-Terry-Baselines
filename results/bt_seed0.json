@@ -1,12 +1,12 @@
 {
   "method": "bradley_terry_surface",
   "seed": 0,
-  "best_C": 1.0,
+  "best_C": 0.01,
   "val_acc_by_C": {
-    "0.01": 0.5985,
-    "0.1": 0.5985,
-    "1.0": 0.59875,
-    "10.0": 0.59875
+    "0.01": 0.5935,
+    "0.1": 0.59275,
+    "1.0": 0.59275,
+    "10.0": 0.59275
   },
   "features": [
     "log_len",
@@ -17,151 +17,151 @@
     "tfidf_cos"
   ],
   "weights": {
-    "log_len": -0.1321,
-    "n_lines": 0.3314,
+    "log_len": -0.1278,
+    "n_lines": 0.3286,
     "n_bullets": 0.1626,
-    "jaccard": -0.4978,
-    "overlap_frac": 0.3157,
-    "tfidf_cos": 0.2962
+    "jaccard": -0.4852,
+    "overlap_frac": 0.3094,
+    "tfidf_cos": 0.2874
   },
   "length_only_weights": {
-    "log_len": 0.1746
+    "log_len": 0.1737
   },
   "ultrafeedback_test": {
     "bt_full": {
       "acc": 0.59175,
       "ci95": [
-        0.57625,
-        0.6062562499999999
+        0.57674375,
+        0.60750625
       ],
       "n": 4000,
       "by_length": {
         "chosen_shorter": {
-          "acc": 0.3768996960486322,
-          "n": 1316
+          "acc": 0.3661865049279757,
+          "n": 1319
         },
         "similar_length": {
-          "acc": 0.5742690058479533,
-          "n": 855
+          "acc": 0.5679314565483476,
+          "n": 817
         },
         "chosen_longer": {
-          "acc": 0.7545106615636961,
-          "n": 1829
+          "acc": 0.7618025751072961,
+          "n": 1864
         }
       }
     },
     "bt_length_only": {
-      "acc": 0.56475,
+      "acc": 0.56775,
       "ci95": [
-        0.5489937500000001,
-        0.5795
+        0.55125,
+        0.58300625
       ],
       "n": 4000,
       "by_length": {
         "chosen_shorter": {
           "acc": 0.0,
-          "n": 1316
+          "n": 1319
         },
         "similar_length": {
-          "acc": 0.5029239766081871,
-          "n": 855
+          "acc": 0.4981640146878825,
+          "n": 817
         },
         "chosen_longer": {
           "acc": 1.0,
-          "n": 1829
+          "n": 1864
         }
       }
     },
     "full_minus_length": {
-      "diff": 0.027,
+      "diff": 0.024,
       "ci95": [
-        0.01,
-        0.04475624999999999
+        0.007,
+        0.042
       ]
     }
   },
   "worst_errors": [
     {
-      "id": "uf-train-50018",
-      "margin": -3.084,
-      "prompt": "Extend the given prompt by also requiring the survey to include questions about the participants' income levels, education levels, and geographic location. Additionally, provide a detailed analysis of",
-      "chosen": "A comprehensive study of job satisfaction, work-life balance, and burnout across different professions requires a large-scale, well-designed survey that collects data on various factors, such as parti",
-      "rejected": "Sure, I can help with that! Here is an example survey and analysis:\n\nSurvey:\n\n1. Please indicate your age:\n\t* Under 18\n\t* 18-24\n\t* 25-34\n\t* 35-44\n\t* 45-54\n\t* 55-64\n\t* 65+\n2. What is your gender?\n\t* Ma"
-    },
-    {
-      "id": "uf-train-12335",
-      "margin": -2.488,
-      "prompt": "do the following tasks according to text which i will provide you :\nTask 1: An entity relationship diagram including all the significant entities, attributes \nand their relationships. Use Crow’s foot ",
-      "chosen": "Based on the provided case scenario, I have created Entity Relationship Diagram (ERD) with significant entities and their relationships using Crow's foot notation and a Relational Model in the Third N",
-      "rejected": "Task 1: Entity Relationship Diagram (ERD)\n\nCrow's Foot Notation\n\n1. Employee\n\t* employee\\_id (P)\n\t* first\\_name\n\t* last\\_name\n\t* email\n\t* phone\n\t* address\n\t* supervisor\\_id (F)\n2. Supervisor\n\t* superv"
+      "id": "uf-train-26524",
+      "margin": -2.209,
+      "prompt": "Retell \"Goldilocks and the three bears\" as a film noir",
+      "chosen": "Goldilocks is a weary detective investigating a series of mysterious disappearances in the woods. After being directed to the shop of the three bears, she is convinced that something sinister is going",
+      "rejected": "INT. BEDROOM - DAY\n\nA young woman, GOLDILOCKS, enters the bedroom of a house in the woods. She is dressed in a trench coat and fedora, and she carries a suitcase. She looks around the room, taking it "
     },
     {
       "id": "uf-train-24849",
-      "margin": -1.953,
+      "margin": -1.907,
       "prompt": "tell application \"Safari\"\n activate\n if (count of windows) > 0 then\n tell front window\n set newTab to make new tab\n set current tab to newTab\n end tell\n else\n display dialog \"No visible windows found.",
       "chosen": "tell application \"Safari\"\nactivate\nif (count of windows) > 0 then\n tell front window\n set newTab to make new tab\n set current tab to newTab\nend tell\nelse\ndisplay dialog \"No visible windows found.\"\nend",
       "rejected": "Of course! I'm here to help you with any questions or tasks you may have. However, I must point out that the code you provided contains some errors and incoherent logic. Specifically, the `tell` comma"
     },
     {
-      "id": "uf-train-11817",
-      "margin": -1.778,
-      "prompt": "What out of the box data entities in D365 Finance and Operations can we use to get the quantity delivered or delivery remainder for sales order lines and the quantity received or received remainder fo",
-      "chosen": "In D365 Finance and Operations, the out of the box data entities you can use to get the quantity delivered or delivery remainder for sales order lines and the quantity received or received remainder f",
-      "rejected": "Hello! As a helpful and respectful assistant, I'm here to provide accurate and engaging content to educate you on the data entities available in D365 Finance and Operations for sales order lines and p"
+      "id": "uf-train-32423",
+      "margin": -1.598,
+      "prompt": "In order to prioritize environmental sustainability, please augment the given prompt with a specific criterion: the unique ingredient must be locally produced and sourced sustainably. Moreover, in add",
+      "chosen": "Prompt: Create a unique sushi roll that incorporates a locally produced and sustainably sourced ingredient, and provide a recipe with step-by-step instructions, potential allergens, suggested price, a",
+      "rejected": "Sure, I can help you with that! Here's an augmented prompt:\nYou are an AI assistant that helps people find information. In order to prioritize environmental sustainability, you will provide informatio"
     },
     {
-      "id": "uf-train-54641",
-      "margin": -1.746,
-      "prompt": "What is the square root of 1.498674056783 to 3 digits of precision",
-      "chosen": "The square root of 1.498674056783 is approximately 1.225 to three decimal places.",
-      "rejected": "To find the square root of a number to a certain number of digits of precision, you can use the following formula:\n\nx = √y ± ε\n\nwhere x is the number you're looking for, y is the number whose square r"
+      "id": "uf-train-61820",
+      "margin": -1.585,
+      "prompt": "Write a headline for an article about the importance of exercise.",
+      "chosen": "\"Unlock Your Limitless Potential: The Unbeatable Power of Exercise to Transform Your Life and Health!\"",
+      "rejected": "\"The Power of Exercise: How Regular Physical Activity Can Transform Your Life\"\n\nExercise is one of the most effective ways to improve your physical and mental health. Regular physical activity has num"
+    },
+    {
+      "id": "uf-train-49574",
+      "margin": -1.523,
+      "prompt": "Consider the 'solas' that originated from Martin Luther King and became the guiding principles of the reformation. For each of the solas, state 3-5 arguments that justify the sola and arguments that i",
+      "chosen": "During the Protestant Reformation, the \"Five Solas\" were five Latin phrases that served as rallying cries and summarized the Reformers' theological beliefs. These were:\n\n1. Sola Scriptura (\"Scripture ",
+      "rejected": "Certainly! As a respectful and helpful AI assistant, I would be happy to help you with your request.\n\nThe five solas of the Reformation, as originated by Martin Luther, are:\n\n1. Sola Scriptura (Script"
     }
   ],
   "hh_rlhf_transfer": {
     "bt_full": {
-      "acc": 0.4815,
+      "acc": 0.5195,
       "ci95": [
-        0.4609875,
-        0.503
+        0.49798749999999997,
+        0.543
       ],
       "n": 2000,
       "by_length": {
         "chosen_shorter": {
-          "acc": 0.5406797116374872,
-          "n": 971
+          "acc": 0.5483870967741935,
+          "n": 775
         },
         "similar_length": {
-          "acc": 0.4984126984126984,
-          "n": 315
+          "acc": 0.5775862068965517,
+          "n": 348
         },
         "chosen_longer": {
-          "acc": 0.39355742296918766,
-          "n": 714
+          "acc": 0.4709236031927024,
+          "n": 877
         }
       }
     },
     "bt_length_only": {
-      "acc": 0.435,
+      "acc": 0.525,
       "ci95": [
-        0.412,
-        0.4575125
+        0.5025,
+        0.5480125
       ],
       "n": 2000,
       "by_length": {
         "chosen_shorter": {
           "acc": 0.0,
-          "n": 971
+          "n": 775
         },
         "similar_length": {
-          "acc": 0.49523809523809526,
-          "n": 315
+          "acc": 0.49712643678160917,
+          "n": 348
         },
         "chosen_longer": {
           "acc": 1.0,
-          "n": 714
+          "n": 877
         }
       }
     }
   },
-  "runtime_sec": 105.2
+  "runtime_sec": 72.8
 }
