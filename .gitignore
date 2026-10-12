@@ -1,0 +1,48 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+
+# --- Secrets (e.g. HF_TOKEN) ---
+.env
+.env.*
+
+# --- Results: keep small metrics JSON, ignore large/regenerable artifacts ---
+# Saved models (regenerate with: python bt_baseline.py --seed N)
+results/**/*.joblib
+# Frozen test splits (~12 MB each, regenerated deterministically from the seed)
+results/splits/
+
+# --- DPO / PPO training outputs (Phase 2 GPU runs) ---
+checkpoints/
+results/dpo/
+results/ppo/
+results/reward_model/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+wandb/
+runs/
+mlruns/
+
+# --- Hugging Face local caches (if HF_HOME is pointed inside the project) ---
+.cache/
+hf_cache/
+
+# --- Logs ---
+*.log
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
